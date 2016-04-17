@@ -1,0 +1,17 @@
+#plateau {
+  border-collapse:collapse;
+  border:1px solid #000000;
+}
+
+#plateau td {
+    width: 2cm;
+    height: 2cm;
+    margin: 0px;
+    padding: 0px;
+    border:1px solid #000000;
+    cursor: pointer;
+}
+
+#plateau td.select {
+  border:2px solid #000000;
+}
