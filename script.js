@@ -14,6 +14,8 @@ if (player1.getRow() == player2.getRow() && player1.getCol() == player2.getCol()
   player2.moveTo((player1.getRow() + 3) % DMAX, player2.getCol())
 }
 
+aTerrain.setCase(player2.getRow(), player2.getCol(), 2) // provisoire pour éviter les collisions
+
 gui.drawPlayer(player1.getRow(), player1.getCol(), "A")
 gui.drawPlayer(player2.getRow(), player2.getCol(), "B")
 

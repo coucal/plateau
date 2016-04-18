@@ -16,4 +16,8 @@ function Terrain () {
   this.is_free = function (arow, acol) {
     return this.map[arow][acol] == 0
   }
+
+  this.setCase = function (row, col, value) {
+    this.map[row][col] = value
+  }
 }
