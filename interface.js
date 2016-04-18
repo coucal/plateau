@@ -1,10 +1,12 @@
+/* global interface, plateau, table, DMAX */
+
 var interface = {
   init: function() {
   document.querySelector('#jeu').innerHTML="<table id=\"plateau\"></table>";
-  plateau=document.querySelector('#plateau')
+  plateau=document.querySelector('#plateau'); 
 
-  table=[];
-  for(var i=0; i<DMAX;i++) {
+  table=[]; 
+  for(var i=0; i<DMAX;i++) { 
     var ligne=document.createElement('tr');
     table[i]=[];
     for(var j=0;j<DMAX;j++) {
@@ -17,15 +19,6 @@ var interface = {
   }
 },
 
- play: function(row,col, player) {
-        console.log(row,col,table[row][col],table[row][col].className);
-        if(table[row][col].className=='select') {
-        table[player1.row][player1.col].innerHTML="";
-        player1.row=row;
-        player1.col=col;
-        table[player1.row][player1.col].innerHTML="A";
-      }
-  },
 
   drawPlayer: function(row,col,player) {
     table[row][col].innerHTML=player;
