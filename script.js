@@ -1,16 +1,20 @@
-/* global interface, plateau, table */
+/* global gui, plateau, table */
+/*jslint browser:true */
 
-const DMAX=10;
+const DMAX = 10;
 
-interface.init();
+gui.init();
 
-var player1={"row":2, "col":2};
+var player1=new Player(1);
+var player2=new Player(2);
+if (player1.getRow()==player2.getRow() && player1.getCol()==player2.getCol()) {
+  player2.moveTo((player1.getRow()+3 )% DMAX, player2.getCol());
+}
+console.log(player1.getRow(),player1.getCol())
+gui.drawPlayer(player1.getRow(),player1.getCol(),"A");
+gui.drawPlayer(player2.getRow(),player2.getCol(),"B");
 
-interface.drawPlayer(player1.row,player1.col,"A");
-var player2={"row":8, "col":8};
-interface.drawPlayer(player2.row,player2.col,"B");
-
-interface.select(player1.row,player1.col,true);
+gui.select(player1.getRow(),player1.getCol(),true);
 
 plateau.addEventListener("click",playturn,false);
 
@@ -19,12 +23,12 @@ function playturn(event) {
   console.log(player1);
 
   console.log(where);
-  var oldrow=player1.row;
-  var oldcol=player1.col;
+  var oldrow=player1.getRow();
+  var oldcol=player1.getCol();
   play(parseInt(where.row),parseInt(where.column),1);
-  interface.select(oldrow,oldcol,false);
+  gui.select(oldrow,oldcol,false);
   console.log(player1);
-  interface.select(player1.row,player1.col,true);
+  gui.select(player1.getRow(),player1.getCol(),true);
 }
 
  function play (row,col, player) {

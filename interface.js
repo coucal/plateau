@@ -1,15 +1,18 @@
-/* global interface, plateau, table, DMAX */
+/* global gui, plateau, table, DMAX */
+/*jslint browser:true */
+/*jslint white:true */
 
-var interface = {
-  init: function() {
+
+var gui = {
+  init: function () {
   document.querySelector('#jeu').innerHTML="<table id=\"plateau\"></table>";
-  plateau=document.querySelector('#plateau'); 
+  plateau=document.querySelector('#plateau');
 
-  table=[]; 
-  for(var i=0; i<DMAX;i++) { 
+  table=[];
+  for(var i=0; i<DMAX;i++) {
     var ligne=document.createElement('tr');
     table[i]=[];
-    for(var j=0;j<DMAX;j++) {
+    for(var j=0; j<DMAX; j++) {
       table[i][j]=document.createElement('td');
       table[i][j].dataset['row'] = i;
       table[i][j].dataset['column'] = j;
@@ -20,8 +23,9 @@ var interface = {
 },
 
 
-  drawPlayer: function(row,col,player) {
-    table[row][col].innerHTML=player;
+  drawPlayer: function(aRow,aCol,aPlayer) {
+    console.log(aRow,aCol,aPlayer);
+    table[aRow][aCol].innerHTML=aPlayer;
   },
 
   select: function(row, col,click) {
