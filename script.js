@@ -1,17 +1,17 @@
 
 DMAX=10;
 
-var maCarte= new Carte('#jeu');
+interface.init();
 
 player1={"row":2, "col":2};
-maCarte.tableau[player1.row][player1.col].innerHTML="A";
 
+interface.drawPlayer(player1.row,player1.col,"A");
 player2={"row":8, "col":8};
-maCarte.tableau[player2.row][player2.col].innerHTML="B";
+interface.drawPlayer(player2.row,player2.col,"B");
 
-maCarte.select(player1.row,player1.col,true);
+interface.select(player1.row,player1.col,true);
 
-maCarte.plateau.addEventListener("click",playturn,false)
+plateau.addEventListener("click",playturn,false)
 
 function playturn(event) {
   var where=event.target.dataset;
@@ -20,8 +20,8 @@ function playturn(event) {
   console.log(where);
   var oldrow=player1.row;
   var oldcol=player1.col;
-  maCarte.play(parseInt(where.row),parseInt(where.column),1);
-  maCarte.select(oldrow,oldcol,false);
+  interface.play(parseInt(where.row),parseInt(where.column),1);
+  interface.select(oldrow,oldcol,false);
   console.log(player1);
-  maCarte.select(player1.row,player1.col,true);
+  interface.select(player1.row,player1.col,true);
 }
