@@ -1,12 +1,12 @@
 /*eslint no-unused-vars: ["off"] */
-/* global Terrain, Player, gui, plateau, jeu  */
+/* global Territoire, Player, carte, plateau, jeu  */
 
 const DMAX = 10
 const BLOCK = 9
 const NB_BLOC = 5
 
-var aTerrain = new Terrain()
-gui.init(aTerrain)
+var aTerr = new Territoire()
+carte.init(aTerr)
 
 var player1 = new Player(1)
 var player2 = new Player(2)
@@ -14,12 +14,12 @@ if (player1.getRow() == player2.getRow() && player1.getCol() == player2.getCol()
   player2.moveTo((player1.getRow() + 3) % DMAX, player2.getCol())
 }
 
-aTerrain.setCase(player2.getRow(), player2.getCol(), 2) // provisoire pour éviter les collisions
+aTerr.setCase(player2.getRow(), player2.getCol(), 2) // provisoire pour éviter les collisions
 
-gui.drawPlayer(player1.getRow(), player1.getCol(), "A")
-gui.drawPlayer(player2.getRow(), player2.getCol(), "B")
+carte.drawPlayer(player1.getRow(), player1.getCol(), "A")
+carte.drawPlayer(player2.getRow(), player2.getCol(), "B")
 
-gui.select(player1.getRow(), player1.getCol(), true)
+carte.select(player1.getRow(), player1.getCol(), true)
 
 plateau.addEventListener("click", playturn, false)
 
@@ -30,11 +30,11 @@ function playturn (event) {
   console.log(where)
   var oldrow = player1.getRow()
   var oldcol = player1.getCol()
-  if (aTerrain.is_free(parseInt(where.row), parseInt(where.column))) {
+  if (aTerr.is_free(parseInt(where.row), parseInt(where.column))) {
     play(parseInt(where.row), parseInt(where.column), 1)
-    gui.select(oldrow, oldcol, false)
+    carte.select(oldrow, oldcol, false)
     console.log(player1)
-    gui.select(player1.getRow(), player1.getCol(), true)
+    carte.select(player1.getRow(), player1.getCol(), true)
   }
 }
 

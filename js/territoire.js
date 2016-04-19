@@ -1,7 +1,7 @@
 /*eslint no-unused-vars: ["off"] */
 /* global DMAX, BLOCK, NB_BLOC */
 
-function Terrain () {
+function Territoire () {
   this.map = []
   for (var i = 0; i < DMAX; i++) {
     this.map[i] = []

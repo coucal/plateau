@@ -1,9 +1,8 @@
 /* global DMAX, BLOCK, jeu, plateau */
-/* exported gui */
 /* eslint no-unused-vars: ["off", { "vars": "local" }]*/
 /* eslint no-native-reassign: ["off"] */
 
-var gui = {
+var carte = {
   init: function (terrain) {
     document.querySelector("#jeu").innerHTML = "<table id=\"plateau\"></table>"
     plateau = document.querySelector("#plateau")
@@ -20,6 +19,7 @@ var gui = {
         }
         ligne.appendChild(jeu[i][j])
       }
+      console.log(ligne)
       plateau.appendChild(ligne)
     }
   },
