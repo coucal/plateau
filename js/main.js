@@ -1,5 +1,6 @@
 /*eslint no-unused-vars: ["off"] */
-/* global Territoire, Player, carte, plateau, jeu  */
+/* global Territoire, Player, Block, carte, plateau, curPlayer */
+/* eslint no-native-reassign: ["off"] */
 
 const DMAX = 10
 const BLOCK = 9
@@ -8,42 +9,44 @@ const NB_BLOC = 5
 var aTerr = new Territoire()
 carte.init(aTerr)
 
-var player1 = new Player(1)
-var player2 = new Player(2)
-if (player1.getRow() == player2.getRow() && player1.getCol() == player2.getCol()) {
-  player2.moveTo((player1.getRow() + 3) % DMAX, player2.getCol())
+for (var i = 0; i < NB_BLOC; i++) {
+  aTerr.place(new Block())
 }
 
-aTerr.setCase(player2.getRow(), player2.getCol(), 2) // provisoire pour éviter les collisions
+var player1 = new Player("A")
+aTerr.place(player1)
+var player2 = new Player("B")
+aTerr.place(player2)
 
-carte.drawPlayer(player1.getRow(), player1.getCol(), "A")
-carte.drawPlayer(player2.getRow(), player2.getCol(), "B")
+carte.draw(aTerr)
 
-carte.select(player1.getRow(), player1.getCol(), true)
+carte.select(player1)
+
+curPlayer = player1
 
 plateau.addEventListener("click", playturn, false)
 
 function playturn (event) {
   var where = event.target.dataset
-  console.log(player1)
 
   console.log(where)
-  var oldrow = player1.getRow()
-  var oldcol = player1.getCol()
-  if (aTerr.is_free(parseInt(where.row), parseInt(where.column))) {
-    play(parseInt(where.row), parseInt(where.column), 1)
-    carte.select(oldrow, oldcol, false)
-    console.log(player1)
-    carte.select(player1.getRow(), player1.getCol(), true)
+  var oldrow = curPlayer.getRow()
+  var oldcol = curPlayer.getCol()
+  if (aTerr.is_free(parseInt(where.row), parseInt(where.col)) && carte.isSelected(parseInt(where.row), parseInt(where.col))) {
+    play(parseInt(where.row), parseInt(where.col), curPlayer)
+    carte.draw(aTerr)
+    if (curPlayer == player1) {
+      curPlayer = player2
+    } else {
+      curPlayer = player1
+    }
+    carte.select(curPlayer)
+  } else {
+    console.log("Notfree", where.row, where.col)
   }
 }
 
 function play (row, col, player) {
-  console.log(row, col, jeu[row][col], jeu[row][col].className)
-  if (jeu[row][col].className == "select") {
-    jeu[player1.row][player1.col].innerHTML = ""
-    player1.row = row
-    player1.col = col
-    jeu[player1.row][player1.col].innerHTML = "A"
-  }
+  console.log("play", row, col, player)
+  aTerr.moveTo(row, col, player)
 }

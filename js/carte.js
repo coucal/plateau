@@ -13,37 +13,48 @@ var carte = {
       for (var j = 0; j < DMAX; j++) {
         jeu[i][j] = document.createElement("td")
         jeu[i][j].dataset["row"] = i
-        jeu[i][j].dataset["column"] = j
+        jeu[i][j].dataset["col"] = j
         if (terrain.map[i][j] == BLOCK) {
           this.drawBlock(i, j)
         }
         ligne.appendChild(jeu[i][j])
       }
-      console.log(ligne)
       plateau.appendChild(ligne)
     }
   },
 
-  drawPlayer: function (aRow, aCol, aPlayer) {
-    jeu[aRow][aCol].innerHTML = aPlayer
+  draw: function (terrain) {
+    for (var i = 0; i < DMAX; i++) {
+      for (var j = 0; j < DMAX; j++) {
+        jeu[i][j].className = "plateau"
+        if (terrain.map[i][j] != null) {
+          jeu[i][j].innerHTML = terrain.map[i][j].icon()
+        } else {
+          jeu[i][j].innerHTML = ""
+        }
+      }
+    }
   },
 
-  drawBlock: function (aRow, aCol) {
-    jeu[aRow][aCol].innerHTML = "X"
-  },
-
-  select: function (row, col, click) {
+  select: function (player) {
+    console.log("select", player)
+    var row = player.getRow()
+    var col = player.getCol()
     for (var i = -3; i <= 3; i++) {
       var row1 = row + i
       if (row1 >= 0 && row1 < DMAX) {
         var elt = jeu[row1][col]
-        elt.className = click ? "select" : "plateau"
+        elt.className = "select"
       }
       var col1 = col + i
       if (col1 >= 0 && col1 < DMAX) {
         elt = jeu[row][col1]
-        elt.className = click ? "select" : "plateau"
+        elt.className = "select"
       }
     }
+  },
+
+  isSelected: function (row, col) {
+    return jeu[row][col].className == "select"
   }
 }
