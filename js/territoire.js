@@ -20,7 +20,7 @@ function Territoire () {
   }
 
   this.is_free = function (arow, acol) {
-    return this.map[arow][acol] == null
+    return this.map[arow][acol] == null || this.map[arow][acol].type == "weapon"
   }
 
   this.setCase = function (row, col, obj) {

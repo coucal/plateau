@@ -6,7 +6,7 @@ const D_STRENGTH = 10
 function Piece () {
   this.name = ""
   this.icon = function () {
-    return this.name
+    return "<img src = \"icon/" + this.type + "-" + this.name + ".png\">"
   }
 
   this.getRow = function () {
@@ -31,6 +31,7 @@ function Piece () {
 function Player (newName) {
   this.row = 0
   this.col = 0
+  this.type = "player"
   this.name = newName
   this.weapon = null
   this.strength = D_STRENGTH
@@ -38,12 +39,14 @@ function Player (newName) {
 Player.prototype = new Piece
 
 function Weapon (newName, newPower) {
+  this.type = "weapon"
   this.name = newName
   this.power = newPower
 }
 Weapon.prototype = new Piece
 
 function Block () {
-  this.name = "Block"
+  this.type = "placeholder"
+  this.name = "block"
 }
 Block.prototype = new Piece

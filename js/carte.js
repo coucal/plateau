@@ -37,7 +37,6 @@ var carte = {
   },
 
   select: function (player) {
-    console.log("select", player)
     var row = player.getRow()
     var col = player.getCol()
     for (var i = -3; i <= 3; i++) {
