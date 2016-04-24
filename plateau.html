@@ -1,29 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="utf-8">
     <title>Jeu de Plateau</title>
     <link rel="stylesheet" href="css/style.css">
 
-  </head>
-  <body>
-	<div id="jeu">
-	    Veuillez activer javascript pour jouer.
-	</div>
-<div id="status"></div>
-<div id="mario"> <img src="icon/player-mario.png">
-  <span class="weapon"><img src="icon/weapon-sword.png"></span>
-  <span class="power">100</span>
-</div>
-<div id="sonic"> <img src="icon/player-sonic.png">
-  <span class="weapon"><img src="icon/weapon-sword.png"></span>
-  <span class="power">100</span>
-</div>
+</head>
+
+<body>
+    <div id="jeu">
+        Veuillez activer javascript pour jouer.
+    </div>
+    <div id="status"></div>
+    <div id="scores">
+        <div id="mario">
+            <img src="icon/player-mario.png">
+            <span class="weapon"><img src="icon/weapon-sword.png"></span>
+            <span class="power">100</span>
+        </div>
+        <div id="sonic">
+            <img src="icon/player-sonic.png">
+            <span class="weapon"><img src="icon/weapon-sword.png"></span>
+            <span class="power">100</span>
+        </div>
+    </div>
 
 <script src="js/carte.js"></script>
 <script src="js/territoire.js"></script>
 <script src="js/piece.js"></script>
 <script src="js/main.js"></script>
 </body>
-  </body>
+
 </html>
