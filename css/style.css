@@ -37,10 +37,10 @@
 }
 #scores > div:first-child {
     text-align: right;
-    padding-right:25px;
+    padding-right:40px;
 }
 #scores > div:last-child {
-    padding-left:25px;
+    padding-left:40px;
     text-align: left;
 }
 
@@ -48,4 +48,9 @@
 #scores span {
     display: inline-block;
     vertical-align: middle;
+}
+
+#scores img + span,
+#scores span + span {
+    margin-left:10px;
 }
