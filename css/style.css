@@ -1,6 +1,11 @@
+#jeu {
+    text-align: center;
+}
+
 #plateau {
-  border-collapse:collapse;
-  border:1px solid #000000;
+    border-collapse: collapse;
+    border: 1px solid #000000;
+    margin: 0 auto;
 }
 
 #plateau td {
@@ -8,12 +13,39 @@
     height: 2cm;
     margin: 0px;
     padding: 0px;
-    border:1px solid #000000;
+    border: 1px solid #000000;
     cursor: pointer;
     vertical-align: middle;
     text-align: center;
 }
 
 #plateau td.select {
-  border:2px solid #000000;
+    border: 2px solid #000000;
+}
+
+#scores {
+    margin: 20px auto;
+    overflow: hidden;
+    max-width: 20cm;
+    border: 1px dashed;
+    padding: 10px;
+}
+#scores > div {
+    float:left;
+    width:50%;
+    box-sizing: border-box;
+}
+#scores > div:first-child {
+    text-align: right;
+    padding-right:25px;
+}
+#scores > div:last-child {
+    padding-left:25px;
+    text-align: left;
+}
+
+#scores img,
+#scores span {
+    display: inline-block;
+    vertical-align: middle;
 }
