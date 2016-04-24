@@ -17,3 +17,16 @@
 #plateau td.select {
   border:2px solid #000000;
 }
+
+#Overlay
+{
+  visibility: hidden;
+  position: absolute;
+  left: 190px;
+  top: 220px;
+  width: 300px;
+  height: 200px;
+  text-align:center;
+  border: solid;
+  background-color: SandyBrown;
+}
