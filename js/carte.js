@@ -14,9 +14,6 @@ var carte = {
         jeu[i][j] = document.createElement("td")
         jeu[i][j].dataset["row"] = i
         jeu[i][j].dataset["col"] = j
-        if (terrain.map[i][j] == BLOCK) {
-          this.drawBlock(i, j)
-        }
         ligne.appendChild(jeu[i][j])
       }
       plateau.appendChild(ligne)
@@ -29,6 +26,9 @@ var carte = {
         jeu[i][j].className = "plateau"
         if (terrain.map[i][j] != null) {
           jeu[i][j].innerHTML = terrain.map[i][j].icon()
+          if (terrain.map[i][j].name == "block") {
+            jeu[i][j].style.backgroundColor = "grey"
+          }
         } else {
           jeu[i][j].innerHTML = ""
         }
