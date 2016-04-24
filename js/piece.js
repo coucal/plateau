@@ -18,7 +18,7 @@ function Piece () {
     return this.col
   }
 
-  this.moveTo = function (newRow, newCol) {
+  this.setPos = function (newRow, newCol) {
     this.row = newRow
     this.col = newCol
   }
@@ -29,6 +29,7 @@ function Player (newName) {
   this.col = 0
   this.type = "player"
   this.name = newName
+  this.oldContent=null
   this.weapon = new Weapon("sword", 10)
   this.strength = D_STRENGTH
 

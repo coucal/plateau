@@ -23,9 +23,11 @@ for (var i = 0; i < NB_BLOC; i++) {
 var player1 = new Player("sonic")
 aTerr.place(player1)
 var player2 = new Player("mario")
-do {
+aTerr.place(player2)
+while (conflict()) {
+  aTerr.clear(player2)
   aTerr.place(player2)
-} while (conflict())
+}
 
 for (var w in weapons) {
   var weapon = new Weapon(weapons[w].name, weapons[w].power)
