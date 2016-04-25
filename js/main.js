@@ -2,7 +2,7 @@
 /*eslint space-infix-ops: ["off"] */
 /* global Territoire, Player, Block, Weapon, carte, plateau, curPlayer */
 /* eslint no-native-reassign: ["off"] */
-
+// TODO remettre ce qui concerne la carte dans carte.js
 const DMAX = 10
 const BLOCK = 9
 const NB_BLOC = 5
@@ -59,7 +59,9 @@ function playturn (event) {
     } else {
       curPlayer = player1
     }
-    carte.select(curPlayer)
+    if (!aTerr.combat) {
+      carte.select(curPlayer)
+    }
   }
 }
 
@@ -70,13 +72,25 @@ function play (row, col, player) {
     var weapon = player.getWeapon()
     player.weapon = player.oldContent
     player.oldContent = weapon
+    carte.showWeapon(player)
   }
   if (conflict()) {
     console.log("Conflit !")
-    document.querySelector("#status").innerHTML = "conflit !"
-  } else {
-    document.querySelector("#status").innerHTML = ""
+    startCombat(player)
   }
+}
+
+function startCombat (player) {
+  carte.draw(aTerr)
+  carte.showCombat(player)
+  aTerr.combat = true
+  console.log("Combat")
+}
+
+function endCombat (Result) {
+  aTerr.combat = false
+  carte.hideCombat()
+  carte.select(curPlayer)
 }
 
 function conflict () {

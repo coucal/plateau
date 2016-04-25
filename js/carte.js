@@ -31,6 +31,7 @@ var carte = {
           }
         } else {
           jeu[i][j].innerHTML = ""
+          jeu[i][j].style.backgroundColor = "white"
         }
       }
     }
@@ -51,9 +52,35 @@ var carte = {
         elt.className = "select"
       }
     }
+    jeu[row][col].style.backgroundColor = "gold"
   },
 
   isSelected: function (row, col) {
     return jeu[row][col].className == "select"
+  },
+
+  showWeapon: function (player) {
+    var scorediv = document.querySelector("#" + player.name)
+    console.log("show", player, player.weapon.icon())
+    scorediv.getElementsByClassName("weapon")[0].innerHTML = player.weapon.icon()
+  },
+
+  showCombat: function (player) {
+    // Change the message.
+    // var Msg = document.getElementById("DlgContent")
+    // Msg.innerHTML = Message
+    // Display the dialog box.
+    var Dlg = document.getElementById("Overlay")
+    document.getElementById("icon").innerHTML = player.icon()
+    Dlg.dataset["player"] = player.name
+    Dlg.style.visibility = "visible"
+  },
+
+  hideCombat: function () {
+    // Hide the dialog box.
+    var Dlg = document.getElementById("Overlay")
+    Dlg.style.visibility = "hidden"
+    Dlg.dataset["player"] = ""
   }
+
 }

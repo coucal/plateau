@@ -35,6 +35,8 @@
     width:50%;
     box-sizing: border-box;
 }
+
+
 #scores > div:first-child {
     text-align: right;
     padding-right:40px;
@@ -53,4 +55,17 @@
 #scores img + span,
 #scores span + span {
     margin-left:10px;
+}
+
+#Overlay
+{
+  visibility: hidden;
+  position: absolute;
+  left: 390px;
+  top: 220px;
+  width: 300px;
+  height: 200px;
+  text-align:center;
+  border: solid;
+  background-color: SandyBrown;
 }

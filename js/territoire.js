@@ -3,6 +3,7 @@
 
 function Territoire () {
   this.map = []
+  this.combat = false
   for (var i = 0; i < DMAX; i++) {
     this.map[i] = []
     for (var j = 0; j < DMAX; j++) {
@@ -26,7 +27,6 @@ function Territoire () {
   this.clear = function (piece) {
     this.map[piece.getRow()][piece.getCol()] = piece.oldContent
   }
-
 
   this.moveTo = function (row, col, piece) {
     this.clear(piece)
