@@ -8,11 +8,6 @@
 
   </head>
   <body>
-    <input id="btnShow"
-    type="button"
-    value="Display the Dialog"
-    onclick="DlgShow('il etait un petit homme...');" />
-    <br>
 	<div id="jeu">
 	    Veuillez activer javascript pour jouer.
 	</div>
@@ -31,10 +26,10 @@
       </div>
   </div>
 
-<div id="Overlay">
+<div id="Overlay" data-player="">
   <div>
-     <p style="color:red;"><b>Conflit ! </b></p>
-    <div id="icon"> <img src="icon/player-sonic.png">
+     <p style="color:red;"><b>Combat ! </b></p>
+    <div id="icon"> <img src="icon/player-sonic.png"></div>
    <p id="DlgContent">Attaquer ou Défendre ? </p>
    <input id="btnYes"
        type="button"

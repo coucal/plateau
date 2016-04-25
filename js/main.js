@@ -74,10 +74,15 @@ function play (row, col, player) {
   }
   if (conflict()) {
     console.log("Conflit !")
-    document.querySelector("#status").innerHTML = "conflit !"
+    combat(player)
   } else {
     document.querySelector("#status").innerHTML = ""
   }
+}
+
+function combat (player) {
+  carte.draw(aTerr)
+  DlgShow(player)
 }
 
 function conflict () {
@@ -89,21 +94,23 @@ function conflict () {
   }
   return false
 }
-function DlgShow (Message) {
+function DlgShow (player) {
   // Change the message.
   // var Msg = document.getElementById("DlgContent")
   // Msg.innerHTML = Message
   // Display the dialog box.
   var Dlg = document.getElementById("Overlay")
+  document.getElementById("icon").innerHTML=player.icon()
+  Dlg.dataset["player"] = player.name
   Dlg.style.visibility = "visible"
 }
 
 function DlgHide (Result) {
-  // Display the result onscreen.
-  var Output = document.getElementById("status")
-  Output.innerHTML = "You clicked: " + Result
-
   // Hide the dialog box.
   var Dlg = document.getElementById("Overlay")
   Dlg.style.visibility = "hidden"
+
+  // Display the result onscreen.
+  var Output = document.getElementById("status")
+  Output.innerHTML = Dlg.dataset["player"] + " " + Result
 }

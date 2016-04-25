@@ -31,6 +31,7 @@ var carte = {
           }
         } else {
           jeu[i][j].innerHTML = ""
+          jeu[i][j].style.backgroundColor = "white"
         }
       }
     }
@@ -51,6 +52,7 @@ var carte = {
         elt.className = "select"
       }
     }
+    jeu[row][col].style.backgroundColor = "gold"
   },
 
   isSelected: function (row, col) {
