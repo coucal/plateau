@@ -27,7 +27,6 @@ function Territoire () {
     this.map[piece.getRow()][piece.getCol()] = piece.oldContent
   }
 
-
   this.moveTo = function (row, col, piece) {
     this.clear(piece)
     piece.oldContent = this.map[row][col]

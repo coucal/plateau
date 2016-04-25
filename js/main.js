@@ -70,6 +70,7 @@ function play (row, col, player) {
     var weapon = player.getWeapon()
     player.weapon = player.oldContent
     player.oldContent = weapon
+    carte.showWeapon(player)
   }
   if (conflict()) {
     console.log("Conflit !")

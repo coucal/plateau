@@ -55,5 +55,11 @@ var carte = {
 
   isSelected: function (row, col) {
     return jeu[row][col].className == "select"
+  },
+
+  showWeapon: function (player) {
+    var scorediv = document.querySelector("#" + player.name)
+    console.log("show", player, player.weapon.icon())
+    scorediv.getElementsByClassName("weapon")[0].innerHTML = player.weapon.icon()
   }
 }

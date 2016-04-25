@@ -29,7 +29,7 @@ function Player (newName) {
   this.col = 0
   this.type = "player"
   this.name = newName
-  this.oldContent=null
+  this.oldContent = null
   this.weapon = new Weapon("sword", 10)
   this.strength = D_STRENGTH
 
