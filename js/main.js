@@ -2,7 +2,7 @@
 /*eslint space-infix-ops: ["off"] */
 /* global Territoire, Player, Block, Weapon, carte, plateau, curPlayer */
 /* eslint no-native-reassign: ["off"] */
-
+// TODO remettre ce qui concerne la carte dans carte.js
 const DMAX = 10
 const BLOCK = 9
 const NB_BLOC = 5
@@ -59,7 +59,9 @@ function playturn (event) {
     } else {
       curPlayer = player1
     }
-    carte.select(curPlayer)
+    if (!aTerr.combat) {
+      carte.select(curPlayer)
+    }
   }
 }
 
@@ -74,15 +76,21 @@ function play (row, col, player) {
   }
   if (conflict()) {
     console.log("Conflit !")
-    combat(player)
-  } else {
-    document.querySelector("#status").innerHTML = ""
+    startCombat(player)
   }
 }
 
-function combat (player) {
+function startCombat (player) {
   carte.draw(aTerr)
-  DlgShow(player)
+  carte.showCombat(player)
+  aTerr.combat = true
+  console.log("Combat")
+}
+
+function endCombat (Result) {
+  aTerr.combat = false
+  carte.hideCombat()
+  carte.select(curPlayer)
 }
 
 function conflict () {
@@ -93,24 +101,4 @@ function conflict () {
     return true
   }
   return false
-}
-function DlgShow (player) {
-  // Change the message.
-  // var Msg = document.getElementById("DlgContent")
-  // Msg.innerHTML = Message
-  // Display the dialog box.
-  var Dlg = document.getElementById("Overlay")
-  document.getElementById("icon").innerHTML=player.icon()
-  Dlg.dataset["player"] = player.name
-  Dlg.style.visibility = "visible"
-}
-
-function DlgHide (Result) {
-  // Hide the dialog box.
-  var Dlg = document.getElementById("Overlay")
-  Dlg.style.visibility = "hidden"
-
-  // Display the result onscreen.
-  var Output = document.getElementById("status")
-  Output.innerHTML = Dlg.dataset["player"] + " " + Result
 }

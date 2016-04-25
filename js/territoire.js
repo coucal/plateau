@@ -3,6 +3,7 @@
 
 function Territoire () {
   this.map = []
+  this.combat = false
   for (var i = 0; i < DMAX; i++) {
     this.map[i] = []
     for (var j = 0; j < DMAX; j++) {
