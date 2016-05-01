@@ -14,19 +14,19 @@
   <br>
   <div id="status"></div>
   <div id="scores">
-      <div id="mario">
+      <div id="Mario">
           <img src="icon/player-mario.png">
           <span class="weapon"><img src="icon/weapon-sword.png"></span>
-          <span class="power">100</span>
+          <span class="strength">100</span>
       </div>
-      <div id="sonic">
+      <div id="Sonic">
           <img src="icon/player-sonic.png">
           <span class="weapon"><img src="icon/weapon-sword.png"></span>
-          <span class="power">100</span>
+          <span class="strength">100</span>
       </div>
   </div>
 
-<div id="Overlay" data-player="">
+<div id="fightDialog" data-player="" data-result="">
   <div>
      <p style="color:red;"><b>Combat ! </b></p>
     <div id="icon"> <img src="icon/player-sonic.png"></div>
@@ -34,12 +34,16 @@
    <input id="btnYes"
        type="button"
        value="Attaquer"
-       onclick="endCombat('Att')" />
+       onclick="carte.hideDialog('Att')" />
    <input id="btnNo"
        type="button"
        value="Defendre"
-       onclick="endCombat('Def')" />
+       onclick="carte.hideDialog('Def')" />
   </div>
+</div>
+
+<div id="infoWindow" >
+   <p id="infoText"> </p>
 </div>
 <script src="js/carte.js"></script>
 <script src="js/territoire.js"></script>

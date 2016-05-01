@@ -1,6 +1,6 @@
 /*eslint no-unused-vars: ["off"] */
 /*eslint space-infix-ops: ["off"] */
-/* global Territoire, Player, Block, Weapon, carte, plateau, curPlayer */
+/* global Territoire, Player, Block, Weapon, carte, plateau, curPlayer, loopStep */
 /* eslint no-native-reassign: ["off"] */
 // TODO remettre ce qui concerne la carte dans carte.js
 const DMAX = 10
@@ -8,9 +8,9 @@ const BLOCK = 9
 const NB_BLOC = 5
 const weapons = [
   { name: "axe", power: 10 },
-  { name: "boneknife", power: 10 },
-  { name: "scythe", power: 10 },
-  { name: "forestbow", power: 10 }
+  { name: "boneknife", power: 20 },
+  { name: "scythe", power: 30 },
+  { name: "forestbow", power: 50 }
 ]
 
 var aTerr = new Territoire()
@@ -20,9 +20,9 @@ for (var i = 0; i < NB_BLOC; i++) {
   aTerr.place(new Block())
 }
 
-var player1 = new Player("sonic")
+var player1 = new Player("Sonic")
 aTerr.place(player1)
-var player2 = new Player("mario")
+var player2 = new Player("Mario")
 aTerr.place(player2)
 while (conflict()) {
   aTerr.clear(player2)
@@ -81,16 +81,61 @@ function play (row, col, player) {
 }
 
 function startCombat (player) {
+  // efface la selection
   carte.draw(aTerr)
-  carte.showCombat(player)
   aTerr.combat = true
-  console.log("Combat")
+  console.log(player.name + " startCombat ")
+  if (player==player1) {
+    loopStep = 1
+  } else {
+    loopStep = 4
+  }
+  fightLoop()
 }
 
-function endCombat (Result) {
-  aTerr.combat = false
-  carte.hideCombat()
-  carte.select(curPlayer)
+function combat (firstPlayer, secondPlayer) {
+  firstPlayer.attack(secondPlayer)
+  carte.showStrength(secondPlayer)
+  if (secondPlayer.strength <=0) {
+    carte.showInfo(firstPlayer.name + "Vainqueur !")
+  } else {
+    secondPlayer.attack(firstPlayer)
+    carte.showStrength(firstPlayer)
+    if (firstPlayer.strength <= 0) {
+      carte.showInfo(secondPlayer.name + "Vainqueur !")
+    } else {
+      aTerr.combat = false
+      carte.select(curPlayer)
+    }
+  }
+}
+
+function fightLoop () {
+  console.log("fightLoop " + loopStep)
+  switch (loopStep++) {
+    case 1:
+      carte.showDialog(player1)
+      break
+    case 2:
+      player1.modeCombat=carte.getResult()
+      carte.showDialog(player2)
+      break
+    case 3:
+      player2.modeCombat=carte.getResult()
+      combat(player1, player2)
+      break
+    case 4:
+      carte.showDialog(player2)
+      break
+    case 5:
+      player2.modeCombat=carte.getResult()
+      carte.showDialog(player1)
+      break
+    case 6:
+      player1.modeCombat=carte.getResult()
+      combat(player1, player2)
+      break
+  }
 }
 
 function conflict () {

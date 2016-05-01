@@ -1,4 +1,4 @@
-/* global DMAX, BLOCK, jeu, plateau */
+/* global DMAX, BLOCK, jeu, plateau, fightLoop */
 /* eslint no-unused-vars: ["off", { "vars": "local" }]*/
 /* eslint no-native-reassign: ["off"] */
 
@@ -24,6 +24,7 @@ var carte = {
     for (var i = 0; i < DMAX; i++) {
       for (var j = 0; j < DMAX; j++) {
         jeu[i][j].className = "plateau"
+        jeu[i][j].style.backgroundColor = "white"
         if (terrain.map[i][j] != null) {
           jeu[i][j].innerHTML = terrain.map[i][j].icon()
           if (terrain.map[i][j].name == "block") {
@@ -31,7 +32,6 @@ var carte = {
           }
         } else {
           jeu[i][j].innerHTML = ""
-          jeu[i][j].style.backgroundColor = "white"
         }
       }
     }
@@ -61,26 +61,38 @@ var carte = {
 
   showWeapon: function (player) {
     var scorediv = document.querySelector("#" + player.name)
-    console.log("show", player, player.weapon.icon())
     scorediv.getElementsByClassName("weapon")[0].innerHTML = player.weapon.icon()
   },
 
-  showCombat: function (player) {
-    // Change the message.
-    // var Msg = document.getElementById("DlgContent")
-    // Msg.innerHTML = Message
-    // Display the dialog box.
-    var Dlg = document.getElementById("Overlay")
+  showStrength: function (player) {
+    var scorediv = document.querySelector("#" + player.name)
+    scorediv.getElementsByClassName("strength")[0].innerHTML = player.strength
+  },
+
+  showDialog: function (player) {
+    var Dlg = document.getElementById("fightDialog")
     document.getElementById("icon").innerHTML = player.icon()
     Dlg.dataset["player"] = player.name
     Dlg.style.visibility = "visible"
   },
 
-  hideCombat: function () {
+  hideDialog: function (result) {
     // Hide the dialog box.
-    var Dlg = document.getElementById("Overlay")
+    var Dlg = document.getElementById("fightDialog")
     Dlg.style.visibility = "hidden"
     Dlg.dataset["player"] = ""
-  }
+    Dlg.dataset["result"] = result
+    fightLoop()
+  },
 
+  getResult: function () {
+    var Dlg = document.getElementById("fightDialog")
+    return Dlg.dataset["result"]
+  },
+
+  showInfo: function (info) {
+    var Dlg = document.getElementById("infoWindow")
+    document.getElementById("infoText").innerHTML = info
+    Dlg.style.visibility = "visible"
+  }
 }

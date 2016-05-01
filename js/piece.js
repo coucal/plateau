@@ -2,7 +2,7 @@
 /*eslint no-unused-vars: ["off"] */
 /*eslint new-parens: ["off"] */
 
-const D_STRENGTH = 10
+const D_STRENGTH = 100
 function Piece () {
   this.name = ""
   this.oldContent = null
@@ -32,9 +32,20 @@ function Player (newName) {
   this.oldContent = null
   this.weapon = new Weapon("sword", 10)
   this.strength = D_STRENGTH
+  this.modeCombat = ""
 
   this.getWeapon = function () {
     return this.weapon
+  }
+
+  this.attack = function (otherPlayer) {
+    var strike = this.weapon.power
+    console.log(this.name + " attaque " + strike + " -> " + otherPlayer.name + " = " + otherPlayer.strength)
+    if (otherPlayer.modeCombat == "Def") {
+      strike = strike / 2
+    }
+    otherPlayer.strength -= strike
+    console.log(otherPlayer.name + " prend " + strike + " = " + otherPlayer.strength)
   }
 }
 Player.prototype = new Piece

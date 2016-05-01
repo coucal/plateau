@@ -17,6 +17,7 @@
     cursor: pointer;
     vertical-align: middle;
     text-align: center;
+    background-color: white;
 }
 
 #plateau td.select {
@@ -57,7 +58,7 @@
     margin-left:10px;
 }
 
-#Overlay
+#fightDialog
 {
   visibility: hidden;
   position: absolute;
@@ -68,4 +69,17 @@
   text-align:center;
   border: solid;
   background-color: SandyBrown;
+}
+
+#infoWindow
+{
+  visibility: hidden;
+  position: absolute;
+  left: 390px;
+  top: 220px;
+  width: 400px;
+  height: 150px;
+  text-align:center;
+  border: solid;
+  background-color: LightGreen;
 }
