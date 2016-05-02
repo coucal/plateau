@@ -2,13 +2,14 @@
     text-align: center;
 }
 
-#plateau {
+
+#grille, #plateau {
     border-collapse: collapse;
     border: 1px solid #000000;
     margin: 0 auto;
 }
 
-#plateau td {
+#plateau td, #grille td {
     width: 2cm;
     height: 2cm;
     margin: 0px;
@@ -68,7 +69,7 @@
   height: 200px;
   text-align:center;
   border: solid;
-  background-color: SandyBrown;
+  background-color: PaleGoldenRod;
 }
 
 #infoWindow
@@ -84,5 +85,5 @@
   height: 120px;
   text-align:center;
   border: solid;
-  background-color: LightGreen;
+  background-color: PaleGreen;
 }

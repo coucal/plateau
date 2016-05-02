@@ -27,7 +27,6 @@
   </div>
 
 <div id="fightDialog" data-player="" data-result="">
-  <div>
      <p style="color:red;"><b>Combat ! </b></p>
     <div id="icon"> <img src="icon/player-sonic.png"></div>
    <p id="DlgContent">Attaquer ou Défendre ? </p>
@@ -39,11 +38,20 @@
        type="button"
        value="Defendre"
        onclick="carte.hideDialog('D')" />
-  </div>
 </div>
 
 <div id="infoWindow" >
    <p id="infoText"> </p>
+</div>
+
+<div>
+   <table id="grille">
+     <tr><td><img src = "icon/weapon-sword.png"> 10 </td></tr>
+     <tr><td><img src = "icon/weapon-axe.png"> 10 </td></tr>
+     <tr><td><img src = "icon/weapon-boneknife.png"> 20 </td></tr>
+     <tr><td><img src = "icon/weapon-scythe.png"> 30 </td></tr>
+     <tr><td><img src = "icon/weapon-forestbow.png"> 50 </td></tr>
+   </table>
 </div>
 <script src="js/carte.js"></script>
 <script src="js/territoire.js"></script>
