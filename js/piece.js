@@ -41,11 +41,15 @@ function Player (newName) {
   this.attack = function (otherPlayer) {
     var strike = this.weapon.power
     console.log(this.name + " attaque " + strike + " -> " + otherPlayer.name + " = " + otherPlayer.strength)
-    if (otherPlayer.modeCombat == "Def") {
+    if (otherPlayer.modeCombat == "D") {
       strike = strike / 2
     }
     otherPlayer.strength -= strike
+    if (otherPlayer.strength < 0) {
+      otherPlayer.strength = 0
+    }
     console.log(otherPlayer.name + " prend " + strike + " = " + otherPlayer.strength)
+    return strike
   }
 }
 Player.prototype = new Piece

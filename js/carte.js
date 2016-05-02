@@ -70,6 +70,7 @@ var carte = {
   },
 
   showDialog: function (player) {
+    carte.hideInfo()
     var Dlg = document.getElementById("fightDialog")
     document.getElementById("icon").innerHTML = player.icon()
     Dlg.dataset["player"] = player.name
@@ -82,6 +83,7 @@ var carte = {
     Dlg.style.visibility = "hidden"
     Dlg.dataset["player"] = ""
     Dlg.dataset["result"] = result
+    console.log("Dialogue cahé !")
     fightLoop()
   },
 
@@ -94,5 +96,10 @@ var carte = {
     var Dlg = document.getElementById("infoWindow")
     document.getElementById("infoText").innerHTML = info
     Dlg.style.visibility = "visible"
+  },
+
+  hideInfo: function () {
+    var Dlg = document.getElementById("infoWindow")
+    Dlg.style.visibility = "hidden"
   }
 }

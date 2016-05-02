@@ -74,11 +74,14 @@
 #infoWindow
 {
   visibility: hidden;
+  font-family: 'Lucida Grande', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 26px;
+  font-weight: bold;
   position: absolute;
   left: 390px;
   top: 220px;
   width: 400px;
-  height: 150px;
+  height: 120px;
   text-align:center;
   border: solid;
   background-color: LightGreen;

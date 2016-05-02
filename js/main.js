@@ -2,6 +2,7 @@
 /*eslint space-infix-ops: ["off"] */
 /* global Territoire, Player, Block, Weapon, carte, plateau, curPlayer, loopStep */
 /* eslint no-native-reassign: ["off"] */
+/* eslint one-var: ["off"] */
 // TODO remettre ce qui concerne la carte dans carte.js
 const DMAX = 10
 const BLOCK = 9
@@ -86,52 +87,63 @@ function startCombat (player) {
   aTerr.combat = true
   console.log(player.name + " startCombat ")
   if (player==player1) {
-    loopStep = 1
+    loopStep = 0
   } else {
-    loopStep = 4
+    loopStep = 3
   }
   fightLoop()
 }
 
 function combat (firstPlayer, secondPlayer) {
-  firstPlayer.attack(secondPlayer)
-  carte.showStrength(secondPlayer)
-  if (secondPlayer.strength <=0) {
-    carte.showInfo(firstPlayer.name + "Vainqueur !")
-  } else {
-    secondPlayer.attack(firstPlayer)
-    carte.showStrength(firstPlayer)
-    if (firstPlayer.strength <= 0) {
-      carte.showInfo(secondPlayer.name + "Vainqueur !")
-    } else {
-      aTerr.combat = false
-      carte.select(curPlayer)
+  var s1 = 0, s2 = 0
+  var info=""
+  if (firstPlayer.modeCombat == "A") {
+    s1=firstPlayer.attack(secondPlayer)
+    carte.showStrength(secondPlayer)
+    info= secondPlayer.name + " perd " + s1 + " points<br>"
+    if (secondPlayer.strength == 0) {
+      carte.showInfo(firstPlayer.name + " Vainqueur !")
+      return
     }
   }
+  if (secondPlayer.modeCombat == "A") {
+    s2=secondPlayer.attack(firstPlayer)
+    carte.showStrength(firstPlayer)
+    info= info+firstPlayer.name + " perd " + s2 + " points"
+    if (firstPlayer.strength == 0) {
+      carte.showInfo(secondPlayer.name + " Vainqueur !")
+    }
+  }
+  if (info != "") {
+    carte.showInfo(info)
+  }
+  setTimeout(function () {
+    fightLoop()
+  }, 2000)
 }
 
 function fightLoop () {
   console.log("fightLoop " + loopStep)
-  switch (loopStep++) {
-    case 1:
+  switch (loopStep++ % 6) {
+    case 0:
       carte.showDialog(player1)
       break
-    case 2:
+    case 1:
       player1.modeCombat=carte.getResult()
       carte.showDialog(player2)
       break
-    case 3:
+    case 2:
       player2.modeCombat=carte.getResult()
       combat(player1, player2)
       break
-    case 4:
+    case 3:
       carte.showDialog(player2)
       break
-    case 5:
+    case 4:
       player2.modeCombat=carte.getResult()
       carte.showDialog(player1)
       break
-    case 6:
+    case 5:
       player1.modeCombat=carte.getResult()
       combat(player1, player2)
       break
