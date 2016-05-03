@@ -1,7 +1,19 @@
+#plateau-conteneur {
+    position:relative;
+    max-width: 23.5cm;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+#jeu-conteneur {
+    max-width: 20cm;
+    float: left;
+    position: relative;
+}
+
 #jeu {
     text-align: center;
 }
-
 
 #grille, #plateau {
     border-collapse: collapse;
@@ -26,7 +38,7 @@
 }
 
 #scores {
-    margin: 20px auto;
+    margin: 20px 0;
     overflow: hidden;
     max-width: 20cm;
     border: 1px dashed;
@@ -59,12 +71,14 @@
     margin-left:10px;
 }
 
+
+
 #fightDialog
 {
   visibility: hidden;
   position: absolute;
-  left: 390px;
-  top: 220px;
+  left: calc(50% - 150px);
+  top: calc(50% - 100px);
   width: 300px;
   height: 200px;
   text-align:center;
@@ -79,11 +93,40 @@
   font-size: 26px;
   font-weight: bold;
   position: absolute;
-  left: 390px;
-  top: 220px;
+  left: calc(50% - 200px);
+  top: calc(50% - 60px);
   width: 400px;
   height: 120px;
   text-align:center;
   border: solid;
   background-color: PaleGreen;
+}
+
+@media screen and (min-width: 885px) {
+    #jeu {
+        float:left;
+    }
+    #grille-conteneur {
+        float:right;
+    }
+}
+
+@media screen and (max-width: 885px) {
+    #grille-conteneur {
+        margin-top: 20px;
+    }
+    
+    #grille-conteneur #grille  {
+        border-right: 0;
+        
+    }
+    #grille-conteneur #grille td {
+        border-width: 0 1px 0 0;
+    }
+    #grille-conteneur #grille tr {
+        display:table-cell;
+    }
+    #scores {
+        margin: 20px auto;
+    }
 }
