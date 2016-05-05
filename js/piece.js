@@ -56,7 +56,7 @@ function Weapon (newName, newPower) {
 }
 Weapon.prototype = new Piece
 
-// Objet Bloc (occuoe une case) 
+// Objet Bloc (occuoe une case)
 function Block () {
   this.type = "placeholder"
   this.name = "block"
